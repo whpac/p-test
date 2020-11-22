@@ -5,7 +5,7 @@ namespace Whpac\PTest;
  * Base class for test cases.
  */
 class TestCase {
-    private $expected_throwable = null;
+    private $expectedThrowable = null;
 
     /**
      * Runs a test case.
@@ -20,15 +20,15 @@ class TestCase {
      * of the same type is thrown it will be considered as passed.
      */
     protected final function expect(?\Throwable $throwable): void{
-        $this->expected_throwable = $throwable;
+        $this->expectedThrowable = $throwable;
     }
 
     /**
      * Returns name of class of the expected throwable.
      */
     public final function getExpectedException(): string{
-        if(is_null($this->expected_throwable)) return '';
-        return get_class($this->expected_throwable);
+        if(is_null($this->expectedThrowable)) return '';
+        return get_class($this->expectedThrowable);
     }
 }
 
