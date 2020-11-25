@@ -30,6 +30,13 @@ class TestCase {
         if(is_null($this->expectedThrowable)) return '';
         return get_class($this->expectedThrowable);
     }
+
+    /**
+     * Returns whether the test is supposed to throw an exception
+     */
+    public final function isExceptionExpected(): bool{
+        return !is_null($this->expectedThrowable);
+    }
 }
 
 /**
