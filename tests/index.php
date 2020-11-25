@@ -1,10 +1,6 @@
 <?php
-require('../src/testcase.php');
-require('../src/testsuite.php');
-require('../src/testresult.php');
-require('../src/runmanager.php');
-require('../src/testfailedexception.php');
-
+// Includes the PTest library
+require('../src/ptest.php');
 
 include('successful.php');
 include('failed.php');
