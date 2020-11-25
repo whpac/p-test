@@ -8,4 +8,5 @@ include('exception.php');
 include('testsuite.php');
 include('test_result.php');
 include('run_manager.php');
+include('registry.php');
 ?>
