@@ -15,6 +15,13 @@ class TestCase {
     }
 
     /**
+     * Returns the name of the test.
+     */
+    public function getName(): string{
+        return '['.get_class($this).']';
+    }
+
+    /**
      * Tells the execution environment to expect an exception to pass the test.
      * @param $throwable Instance of throwable. If the test will end when a throwable
      * of the same type is thrown it will be considered as passed.
