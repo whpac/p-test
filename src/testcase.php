@@ -42,7 +42,7 @@ class TestCase {
      * Fails the test.
      */
     protected function fail(): void{
-        throw new \Exception('Test failed');
+        throw new TestFailedException('Test failed');
     }
 }
 ?>

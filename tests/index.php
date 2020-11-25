@@ -3,6 +3,7 @@ require('../src/testcase.php');
 require('../src/testsuite.php');
 require('../src/testresult.php');
 require('../src/runmanager.php');
+require('../src/testfailedexception.php');
 
 
 include('successful.php');

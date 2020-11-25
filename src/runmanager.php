@@ -1,8 +1,6 @@
 <?php
 namespace Whpac\PTest;
 
-require_once('testresult.php');
-
 /**
  * Class providing a test execution environment.
  * It discerns the passed and failed tests.
@@ -21,7 +19,7 @@ class RunManager {
             }else{
                 return new TestResult(true);
             }
-        }catch(\Exception $e){
+        }catch(\Throwable $e){
             if(get_class($e) == $test_case->getExpectedException()){
                 return new TestResult(true, $e);
             }else{
