@@ -3,6 +3,10 @@ namespace Whpac\PTest;
 
 require_once('testresult.php');
 
+/**
+ * Class providing a test execution environment.
+ * It discerns the passed and failed tests.
+ */
 class RunManager {
 
     /**

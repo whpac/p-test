@@ -37,12 +37,12 @@ class TestCase {
     public final function isExceptionExpected(): bool{
         return !is_null($this->expectedThrowable);
     }
-}
 
-/**
- * Fails the test.
- */
-function fail(): void{
-    throw new \Exception('Test failed');
+    /**
+     * Fails the test.
+     */
+    protected function fail(): void{
+        throw new \Exception('Test failed');
+    }
 }
 ?>

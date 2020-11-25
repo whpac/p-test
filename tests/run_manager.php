@@ -1,7 +1,6 @@
 <?php
 use Whpac\PTest\RunManager;
 use Whpac\PTest\TestCase;
-use function Whpac\PTest\fail;
 
 $rm = new RunManager();
 $result = $rm->runCase(new TestCase());
@@ -38,7 +37,7 @@ echo('Run manager: passed!<br />');
 class RMFailingCase extends TestCase{
 
     public function run(): void{
-        fail();
+        $this->fail();
     }
 }
 

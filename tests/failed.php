@@ -1,11 +1,10 @@
 <?php
 use Whpac\PTest\TestCase;
-use function Whpac\PTest\fail;
 
 class FailingTestCase extends TestCase {
 
     public function run(): void{
-        fail();
+        $this->fail();
     }
 }
 
