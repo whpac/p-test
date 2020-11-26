@@ -11,6 +11,7 @@ namespace Whpac\PTest_Tests;
         </style>
     </head>
     <body>
+        <h1>p-test unit tests</h1>
 <?php
 use Whpac\PTest\TestRegistry;
 use Whpac\PTest\RunManager;
@@ -18,21 +19,40 @@ use Whpac\PTest\RunManager;
 // Includes the PTest library
 require('../src/ptest.php');
 
-echo('Running tests...<br />');
 includeTests(__DIR__);
 $run_manager = new RunManager();
 $test_suites = TestRegistry::getGlobal()->getAllSuites();
-foreach($test_suites as $suite){
+
+$passed = [];
+$failed = [];
+
+foreach($test_suites as $suite_id => $suite){
     $test_cases = $suite->getTestCases();
-    foreach ($test_cases as $test_case) {
-        echo($test_case->getName().': ');
+    foreach($test_cases as $test_case) {
         $result = $run_manager->runCase($test_case);
+
         if($result->isPassed()){
-            echo('passed!<br />');
+            $passed[] = $test_case->getName();
         }else{
-            echo('failed!<br />');
+            $failed[] = $test_case->getName();
         }
     }
+}
+$number_passed = count($passed);
+$number_failed = count($failed);
+$total = $number_passed + $number_failed;
+
+echo('Passed: '.$number_passed.' ('.(100*$number_passed/$total).'%)<br />');
+echo('Failed: '.$number_failed.' ('.(100*$number_failed/$total).'%)<br /><br />');
+
+foreach($failed as $test_name) {
+    echo($test_name.': failed!<br />');
+}
+
+echo('<hr />');
+
+foreach($passed as $test_name) {
+    echo($test_name.': passed!<br />');
 }
 
 function includeTests(string $directory): void{
@@ -47,7 +67,6 @@ function includeTests(string $directory): void{
             includeTests($full_path);
         }else{
             if(substr($full_path, -4) == '.php'){
-                // echo('Included '.$full_path.'<br />');
                 include_once($full_path);
             }
         }
