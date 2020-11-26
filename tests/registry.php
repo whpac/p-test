@@ -3,21 +3,29 @@ use Whpac\PTest\TestRegistry;
 use Whpac\PTest\TestCase;
 use Whpac\PTest\TestSuite;
 
-TestRegistry::register('ptest', new TestCase());
+$reg = new TestRegistry();
+$reg->register('ptest', new TestCase());
 
-$suite = TestRegistry::getSuite('ptest');
+$suite = $reg->getSuite('ptest');
 if(!($suite instanceof TestSuite)){
     echo('Registry: failed!<br />');
     return;
 }
 
 if(count($suite->getTestCases()) != 1){
-    echo('Registry: failed!<br />');
+    echo('Registry: failed getTestCases()!<br />');
     return;
 }
 
-if(count(TestRegistry::getAllSuites()) != 1){
-    echo('Registry: failed!<br />');
+if(count($reg->getAllSuites()) != 1){
+    echo('Registry: failed getAllSuites()!<br />');
+    return;
+}
+
+$reg->clear();
+
+if(count($reg->getAllSuites()) != 0){
+    echo('Registry: failed clear!<br />');
     return;
 }
 
