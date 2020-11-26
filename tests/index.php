@@ -42,8 +42,8 @@ $number_passed = count($passed);
 $number_failed = count($failed);
 $total = $number_passed + $number_failed;
 
-echo('Passed: '.$number_passed.' ('.(100*$number_passed/$total).'%)<br />');
-echo('Failed: '.$number_failed.' ('.(100*$number_failed/$total).'%)<br /><br />');
+echo('Passed: '.$number_passed.' ('.round(100*$number_passed/$total).'%)<br />');
+echo('Failed: '.$number_failed.' ('.round(100*$number_failed/$total).'%)<br /><br />');
 
 foreach($failed as $test_name) {
     echo($test_name.': failed!<br />');
