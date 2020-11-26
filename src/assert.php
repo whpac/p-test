@@ -11,7 +11,7 @@ class Assert {
     public static function isEqual($a, $b): void{
         if($a === $b) return;
 
-        throw new AssertionFailedException();
+        throw new AssertionFailedException('Assert::isEqual() failed');
     }
 }
 ?>
