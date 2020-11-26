@@ -34,7 +34,12 @@ foreach($test_suites as $suite_id => $suite){
         if($result->isPassed()){
             $passed[] = $test_case->getName();
         }else{
-            $failed[] = $test_case->getName();
+            $name = $test_case->getName();
+            $exception = $result->getThrownException();
+            if(!is_null($exception)){
+                $name.= ' ('.$exception->getMessage().')';
+            }
+            $failed[] = $name;
         }
     }
 }
