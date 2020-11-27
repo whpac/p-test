@@ -14,10 +14,10 @@ class TestResultIsAsExpected extends TestCase {
 
     public function run(): void{
         $failed_test = new TestResult(false);
-        Assert::isEqual($failed_test->isPassed(), false);
+        Assert::isEqual(false, $failed_test->isPassed());
         
         $passed_test = new TestResult(true);
-        Assert::isEqual($passed_test->isPassed(), true);
+        Assert::isEqual(true, $passed_test->isPassed());
     }
 }
 
@@ -30,11 +30,11 @@ class TestResultWithException extends TestCase {
     public function run(): void{
         $test_with_exception = new TestResult(false, new \Exception());
         $is_found = strpos(get_class($test_with_exception->getThrownException()), 'Exception') !== false;
-        Assert::isEqual($is_found, true);
+        Assert::isEqual(true, $is_found);
 
         $test_with_error = new TestResult(false, new \Error());
         $is_found = strpos(get_class($test_with_error->getThrownException()), 'Exception') !== false;
-        Assert::isEqual($is_found, false);
+        Assert::isEqual(false, $is_found);
     }
 }
 

@@ -15,7 +15,7 @@ class SuccessfulTest extends TestCase {
     public function run(): void{
         $rm = new RunManager();
         $result = $rm->runCase(new RMSucceedingCase());
-        Assert::isEqual($result->isPassed(), true);
+        Assert::isEqual(true, $result->isPassed());
     }
 }
 
@@ -28,7 +28,7 @@ class FailedTest extends TestCase {
     public function run(): void{
         $rm = new RunManager();
         $result = $rm->runCase(new RMFailingCase());
-        Assert::isEqual($result->isPassed(), false);
+        Assert::isEqual(false, $result->isPassed());
     }
 }
 
@@ -41,7 +41,7 @@ class ExceptionSuccessfulTest extends TestCase {
     public function run(): void{
         $rm = new RunManager();
         $result = $rm->runCase(new RMExceptionSucceedingCase());
-        Assert::isEqual($result->isPassed(), true);
+        Assert::isEqual(true, $result->isPassed());
     }
 }
 
@@ -54,7 +54,7 @@ class ExceptionFailedTest extends TestCase {
     public function run(): void{
         $rm = new RunManager();
         $result = $rm->runCase(new RMExceptionFailingCase());
-        Assert::isEqual($result->isPassed(), false);
+        Assert::isEqual(false, $result->isPassed());
     }
 }
 
@@ -67,7 +67,7 @@ class NoThrowFailedTest extends TestCase {
     public function run(): void{
         $rm = new RunManager();
         $result = $rm->runCase(new RMNoThrowFailingCase());
-        Assert::isEqual($result->isPassed(), false);
+        Assert::isEqual(false, $result->isPassed());
     }
 }
 
