@@ -14,6 +14,9 @@ class IsEqual extends TestCase {
 
     public function run(): void{
         Assert::isEqual(1, 1);
+        Assert::isEqual('1', '1');
+        Assert::isEqual(null, null);
+        Assert::isEqual(false, false);
     }
 }
 
