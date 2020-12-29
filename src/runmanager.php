@@ -27,5 +27,19 @@ class RunManager {
             }
         }
     }
+
+    /**
+     * Runs the given test suite
+     * @param $suite Test suite to run.
+     */
+    public function runSuite(TestSuite $suite): array{
+        $results = [];
+
+        foreach($suite->getTestCases() as $test_case){
+            $results[] = $this->runCase($test_case);
+        }
+
+        return $results;
+    }
 }
 ?>

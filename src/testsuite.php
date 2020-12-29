@@ -25,5 +25,12 @@ class TestSuite{
     public function getTestCases(): array{
         return $this->testCases;
     }
+
+    /**
+     * Returns number of test cases in the suite.
+     */
+    public function countTestCases(): int{
+        return count($this->testCases);
+    }
 }
 ?>
