@@ -4,15 +4,13 @@ namespace Whpac\PTest;
 /**
  * Base class for test cases.
  */
-class TestCase {
+abstract class TestCase {
     private $expectedThrowable = null;
 
     /**
      * Runs a test case.
      */
-    public function run(): void{
-
-    }
+    public abstract function run(): void;
 
     /**
      * Returns the name of the test.
@@ -48,7 +46,7 @@ class TestCase {
     /**
      * Fails the test.
      */
-    protected function fail(): void{
+    protected final function fail(): void{
         throw new TestFailedException('Test failed');
     }
 }
