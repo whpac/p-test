@@ -1,0 +1,18 @@
+html {color-scheme:dark;}
+body {background:#222; color:#f0f0f0;font-family:Arial,Helvetica,sans-serif;
+    font-size:16px; margin:20px;}
+
+.result-big {width:33vw; margin:0 auto; font-family:'Fira Code',Consolas,monospace;
+    padding:10px; text-align:center; font-size:2rem;}
+.result-big .outcome {margin-bottom:0.5rem;}
+.result-big .total {font-size:0.8rem;}
+
+.result-big.passed {background:#080; color:#fff;}
+.result-big.failed {background:#c00; color:#fff;}
+
+.results-columns {display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+.results-columns h2 {text-align:center;}
+.test-failed {background:#800; color:#fff;}
+.test-passed {background:#080; color:#fff;}
+.test-failed, .test-passed {padding:3px 8px; margin-bottom:2px;}
+.test-description {margin:3px 10px; font-size:0.85em;}

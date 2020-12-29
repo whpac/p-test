@@ -6,77 +6,18 @@ namespace Whpac\PTest_Tests;
     <head>
         <meta charset="utf-8" />
         <title>P-Test tests</title>
-        <style>
-            body {background:#222; color:#f0f0f0;}
-        </style>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>p-test unit tests</h1>
-<?php
-use Whpac\PTest\TestRegistry;
-use Whpac\PTest\RunManager;
+        <?php
+        // Includes the PTest library
+        require_once('../src/ptest.php');
+        require_once('test_results.class.php');
+        require_once('test_runner.php');
+        require_once('result_presenter.php');
 
-// Includes the PTest library
-require('../src/ptest.php');
-
-includeTests(__DIR__);
-$run_manager = new RunManager();
-$test_suites = TestRegistry::getGlobal()->getAllSuites();
-
-$passed = [];
-$failed = [];
-
-foreach($test_suites as $suite_id => $suite){
-    $test_cases = $suite->getTestCases();
-    foreach($test_cases as $test_case) {
-        $result = $run_manager->runCase($test_case);
-
-        if($result->isPassed()){
-            $passed[] = $test_case->getName();
-        }else{
-            $name = $test_case->getName();
-            $exception = $result->getThrownException();
-            if(!is_null($exception)){
-                $name.= ' ('.$exception->getMessage().')';
-            }
-            $failed[] = $name;
-        }
-    }
-}
-$number_passed = count($passed);
-$number_failed = count($failed);
-$total = $number_passed + $number_failed;
-
-echo('Passed: '.$number_passed.' ('.round(100*$number_passed/$total).'%)<br />');
-echo('Failed: '.$number_failed.' ('.round(100*$number_failed/$total).'%)<br /><br />');
-
-foreach($failed as $test_name) {
-    echo($test_name.': failed!<br />');
-}
-
-echo('<hr />');
-
-foreach($passed as $test_name) {
-    echo($test_name.': passed!<br />');
-}
-
-function includeTests(string $directory): void{
-    $files = scandir($directory, SCANDIR_SORT_NONE);
-    if($files === false) return;
-
-    foreach ($files as $file) {
-        if($file == '.' || $file == '..') continue;
-
-        $full_path = $directory.DIRECTORY_SEPARATOR.$file;
-        if(is_dir($full_path)){
-            includeTests($full_path);
-        }else{
-            if(substr($full_path, -4) == '.php'){
-                include_once($full_path);
-            }
-        }
-    }
-}
-?>
+        $results = runAllTests(__DIR__);
+        displayResults($results);
+        ?>
     </body>
 </html>
