@@ -5,6 +5,7 @@ use Whpac\PTest\TestRegistry;
 use Whpac\PTest\TestCase;
 use Whpac\PTest\TestSuite;
 use Whpac\PTest\Assert;
+use Whpac\PTest\Mocks\Tests\PassingTestCase;
 
 class GetTestSuite extends TestCase {
 
@@ -14,7 +15,7 @@ class GetTestSuite extends TestCase {
 
     public function run(): void{
         $reg = new TestRegistry();
-        $reg->register('ptest', new MockTestCase());
+        $reg->register('ptest', new PassingTestCase());
 
         $suite = $reg->getSuite('ptest');
         Assert::isEqual(true, $suite instanceof TestSuite);
@@ -29,7 +30,7 @@ class GetTestCases extends TestCase {
 
     public function run(): void{
         $reg = new TestRegistry();
-        $reg->register('ptest', new MockTestCase());
+        $reg->register('ptest', new PassingTestCase());
 
         $suite = $reg->getSuite('ptest');
         Assert::isEqual(1, count($suite->getTestCases()));
@@ -45,10 +46,10 @@ class GetAllSuites extends TestCase {
     public function run(): void{
         $reg = new TestRegistry();
 
-        $reg->register('ptest', new MockTestCase());
+        $reg->register('ptest', new PassingTestCase());
         Assert::isEqual(1, count($reg->getAllSuites()));
 
-        $reg->register('ptest2', new MockTestCase());
+        $reg->register('ptest2', new PassingTestCase());
         Assert::isEqual(2, count($reg->getAllSuites()));
     }
 }
@@ -61,7 +62,7 @@ class Clear extends TestCase {
 
     public function run(): void{
         $reg = new TestRegistry();
-        $reg->register('ptest', new MockTestCase());
+        $reg->register('ptest', new PassingTestCase());
 
         $reg->clear();
         Assert::isEqual(0, count($reg->getAllSuites()));
@@ -72,11 +73,4 @@ TestRegistry::getGlobal()->register('test_grouping.registry', new GetTestSuite()
 TestRegistry::getGlobal()->register('test_grouping.registry', new GetTestCases());
 TestRegistry::getGlobal()->register('test_grouping.registry', new GetAllSuites());
 TestRegistry::getGlobal()->register('test_grouping.registry', new Clear());
-
-class MockTestCase extends TestCase{
-
-    public function run(): void{
-        // Just pass
-    }
-}
 ?>

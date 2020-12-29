@@ -5,6 +5,8 @@ use Whpac\PTest\TestCase;
 use Whpac\PTest\TestRegistry;
 use Whpac\PTest\RunManager;
 use Whpac\PTest\Assert;
+use Whpac\PTest\Mocks\Tests\PassingTestCase;
+use Whpac\PTest\Mocks\Tests\FailingTestCase;
 
 class SuccessfulTest extends TestCase {
 
@@ -14,7 +16,7 @@ class SuccessfulTest extends TestCase {
 
     public function run(): void{
         $rm = new RunManager();
-        $result = $rm->runCase(new RMSucceedingCase());
+        $result = $rm->runCase(new PassingTestCase());
         Assert::isEqual(true, $result->isPassed());
     }
 }
@@ -27,7 +29,7 @@ class FailedTest extends TestCase {
 
     public function run(): void{
         $rm = new RunManager();
-        $result = $rm->runCase(new RMFailingCase());
+        $result = $rm->runCase(new FailingTestCase());
         Assert::isEqual(false, $result->isPassed());
     }
 }
@@ -77,20 +79,6 @@ TestRegistry::getGlobal()->register('basic.running.run_manager', new ExceptionSu
 TestRegistry::getGlobal()->register('basic.running.run_manager', new ExceptionFailedTest());
 TestRegistry::getGlobal()->register('basic.running.run_manager', new NoThrowFailedTest());
 
-
-class RMSucceedingCase extends TestCase{
-
-    public function run(): void{
-        // Just pass
-    }
-}
-
-class RMFailingCase extends TestCase{
-
-    public function run(): void{
-        $this->fail();
-    }
-}
 
 class RMExceptionSucceedingCase extends TestCase{
 

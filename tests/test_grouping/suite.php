@@ -5,6 +5,7 @@ use Whpac\PTest\TestCase;
 use Whpac\PTest\TestRegistry;
 use Whpac\PTest\TestSuite;
 use Whpac\PTest\Assert;
+use Whpac\PTest\Mocks\Tests\PassingTestCase;
 
 class GetTestsInSuite extends TestCase {
 
@@ -29,7 +30,7 @@ class AddTestToSuite extends TestCase {
 
     public function run(): void{
         $suite = new TestSuite();
-        $case = new MockTestCase();
+        $case = new PassingTestCase();
         $suite->add($case);
         $tests = $suite->getTestCases();
 
@@ -41,11 +42,4 @@ class AddTestToSuite extends TestCase {
 
 TestRegistry::getGlobal()->register('test_grouping.suite', new GetTestsInSuite());
 TestRegistry::getGlobal()->register('test_grouping.suite', new AddTestToSuite());
-
-class MockTestCase extends TestCase{
-
-    public function run(): void{
-        // Just pass
-    }
-}
 ?>
