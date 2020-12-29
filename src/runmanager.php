@@ -15,15 +15,15 @@ class RunManager {
         try{
             $test_case->run();
             if($test_case->isExceptionExpected()){
-                return new TestResult(false);
+                return new TestResult(false, $test_case->getName());
             }else{
-                return new TestResult(true);
+                return new TestResult(true, $test_case->getName());
             }
         }catch(\Throwable $e){
             if(get_class($e) == $test_case->getExpectedException()){
-                return new TestResult(true, $e);
+                return new TestResult(true, $test_case->getName(), $e);
             }else{
-                return new TestResult(false, $e);
+                return new TestResult(false, $test_case->getName(), $e);
             }
         }
     }
